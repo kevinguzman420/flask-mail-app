@@ -1,0 +1,56 @@
+{% extends 'base_template.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Confirmed</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <th class="id" scope="row">{{ user.id }}</th>
+                    <td class="name">{{ user.name }}</td>
+                    <td class="email">{{ user.email }}</td>
+                    <td>
+                        <input class="confirmed" type="checkbox" name="" id="" {{ "checked" if user.confirmed else "disabled" }}>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="create-emaiMarketing-form" id="form-mailMark">
+        <form action="" method="POST" novalidate class="form-group border border-primary p-5">
+            <h2 class="h2">Form to send marketing email:</h2>
+            {{ form.hidden_tag() }}        
+            <div>
+                {{ form.template_name.label }} <br>
+                {{ form.template_name }}
+                {% for error in form.template_name.errors %}
+                    <span style="color:red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                {{ form.message.label }} <br>
+                {{ form.message }} <br>
+                {% if form.message.errors %}
+                    {% for error in form.message.errors %}
+                        <span style="color:red;">{{ error }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <br>
+            <div>
+                {{ form.submitMailMark(class_="btn btn-info btn-lg") }}
+            </div>
+        </form>
+    </div>
+    <button id="btn-show-form" class="btn btn-primary btn-lg btn-block">Create Marketing Email</button>
+</div>
+
+{% endblock content %}
