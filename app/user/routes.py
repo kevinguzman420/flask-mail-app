@@ -33,7 +33,7 @@ def restore():
 
 
 @user_bp.route("/restore_password/", methods=["POST", "GET"])
-def restore_password(): # 
+def restore_password():
     form = RestorePassForm()
     context = {
         "form": form
